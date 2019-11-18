@@ -2,7 +2,7 @@
 
 Since [[https://github.com/mermaidjs/mermaid.cli][mermaidjs/mermaid.cli]] looks like not maintained anymore, re-writed with purescript for my personal use.
 
-#+begin_src sh
+#+begin_example
 $ npm install
 $ ./mmdc --help
 mmdc - cli command for mermaid
@@ -19,4 +19,4 @@ Available options:
                            after successfully created.
   -h,--help                Show this help text
 $ ./mmdc -i sample/sequence_diagram.mmd -o seq.png -t dark
-#+end_src
+#+end_example
