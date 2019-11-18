@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Run `npm run build` to get latest build
+# Two `--` is required for padding args.
+DIR="$(dirname "$(readlink -f "$0")")"
+exec env NODE_PATH="$DIR/dist:$DIR/node_modules" node -e "require('Main').main()" -- -- "$@"

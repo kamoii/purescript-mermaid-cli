@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+# dev version
+# Two `--` is required for padding args.
+DIR="$(dirname "$(readlink -f "$0")")"
+(cd "$DIR" && spago build)
+exec env NODE_PATH="$DIR/output:$DIR/node_modules" node -e "require('Main').main()" -- -- "$@"
