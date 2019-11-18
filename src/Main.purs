@@ -62,8 +62,7 @@ optsInfo :: ParserInfo Options
 optsInfo =
   info (optsParser <**> helper)
   ( fullDesc
-    <> progDesc "Print a greeting for TARGET"
-    <> header "mmdc - a test for purescript-optparse"
+    <> header "mmdc - cli command for mermaid"
   )
 
 cdn :: String

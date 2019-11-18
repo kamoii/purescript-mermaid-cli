@@ -11324,19 +11324,6 @@ var PS = {};
       return function ($88) {
           return Options_Applicative_Builder_Internal.fieldMod($87(Options_Applicative_Types.OptShort.create($88)));
       };
-  };
-  var progDesc = function (s) {
-      return InfoMod(Data_Newtype.over(Options_Applicative_Types.parserInfoNewtype)(Options_Applicative_Types.parserInfoNewtype)(Options_Applicative_Types.ParserInfo)(function (i) {
-          return {
-              infoProgDesc: Options_Applicative_Help_Chunk.paragraph(s),
-              infoFailureCode: i.infoFailureCode,
-              infoFooter: i.infoFooter,
-              infoFullDesc: i.infoFullDesc,
-              infoHeader: i.infoHeader,
-              infoParser: i.infoParser,
-              infoPolicy: i.infoPolicy
-          };
-      }));
   };  
   var noArgError = function (e) {
       return Options_Applicative_Builder_Internal.fieldMod(Data_Newtype.over(Options_Applicative_Builder_Internal.newtypeOptionFields)(Options_Applicative_Builder_Internal.newtypeOptionFields)(Options_Applicative_Builder_Internal.OptionFields)(function (p) {
@@ -11548,7 +11535,6 @@ var PS = {};
   exports["eitherReader"] = eitherReader;
   exports["fullDesc"] = fullDesc;
   exports["header"] = header;
-  exports["progDesc"] = progDesc;
   exports["info"] = info;
   exports["defaultPrefs"] = defaultPrefs;
   exports["infoModSemigroup"] = infoModSemigroup;
@@ -13243,7 +13229,7 @@ var PS = {};
           };
       })(Options_Applicative_Builder.strOption(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder["long"](Options_Applicative_Builder_Internal.optionFieldsHasName)("input"))(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder["short"](Options_Applicative_Builder_Internal.optionFieldsHasName)("i"))(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder.metavar(Options_Applicative_Builder_Internal.optionFieldsHasMetavar)("PATH"))(Options_Applicative_Builder.help("Input mermaid file. Required.")))))))(Data_Maybe.optional(Options_Applicative_Types.parserAlternative)(Options_Applicative_Builder.strOption(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder["long"](Options_Applicative_Builder_Internal.optionFieldsHasName)("output"))(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder["short"](Options_Applicative_Builder_Internal.optionFieldsHasName)("o"))(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder.metavar(Options_Applicative_Builder_Internal.optionFieldsHasMetavar)("PATH"))(Options_Applicative_Builder.help("Output file. It should be either svg, png. Optional. Default: input + \".svg\""))))))))(Options_Applicative_Builder.option(themeR)(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder["long"](Options_Applicative_Builder_Internal.optionFieldsHasName)("theme"))(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder["short"](Options_Applicative_Builder_Internal.optionFieldsHasName)("t"))(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder.help("Theme of the chart, could be default, forest, dark or neutral"))(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder.showDefault(showTheme))(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder.value(Options_Applicative_Builder_Internal.optionFieldsHasValue)(DefaultTheme.value))(Options_Applicative_Builder.metavar(Options_Applicative_Builder_Internal.optionFieldsHasMetavar)("THEME")))))))))(Options_Applicative_Builder["switch"](Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder["long"](Options_Applicative_Builder_Internal.flagFieldsHasName)("debug"))(Data_Semigroup.append(Options_Applicative_Builder_Internal.modSemigroup)(Options_Applicative_Builder.help("Show the browser and don't close it atomatically even after successfully created."))(Options_Applicative_Builder.showDefault(Data_Show.showBoolean)))));
   })();
-  var optsInfo = Options_Applicative_Builder.info(Options_Applicative_Internal_Utils.apApplyFlipped(Options_Applicative_Types.parserApply)(optsParser)(Options_Applicative_Extra.helper))(Data_Semigroup.append(Options_Applicative_Builder.infoModSemigroup)(Options_Applicative_Builder.fullDesc)(Data_Semigroup.append(Options_Applicative_Builder.infoModSemigroup)(Options_Applicative_Builder.progDesc("Print a greeting for TARGET"))(Options_Applicative_Builder.header("mmdc - a test for purescript-optparse"))));
+  var optsInfo = Options_Applicative_Builder.info(Options_Applicative_Internal_Utils.apApplyFlipped(Options_Applicative_Types.parserApply)(optsParser)(Options_Applicative_Extra.helper))(Data_Semigroup.append(Options_Applicative_Builder.infoModSemigroup)(Options_Applicative_Builder.fullDesc)(Options_Applicative_Builder.header("mmdc - cli command for mermaid")));
   var convertSvgToPng = function (browser) {
       return function (output) {
           return function (svg) {
@@ -13322,7 +13308,7 @@ var PS = {};
                           if (v1 instanceof PNG) {
                               return convertSvgToPng(v3)(output)(v4);
                           };
-                          throw new Error("Failed pattern match at Main (line 91, column 5 - line 93, column 48): " + [ v1.constructor.name ]);
+                          throw new Error("Failed pattern match at Main (line 90, column 5 - line 92, column 48): " + [ v1.constructor.name ]);
                       })())(function () {
                           return Control_Applicative.when(Effect_Aff.applicativeAff)(doClose)(Toppokki.close(v3));
                       });

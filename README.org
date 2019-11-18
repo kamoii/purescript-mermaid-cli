@@ -3,6 +3,20 @@
 Since [[https://github.com/mermaidjs/mermaid.cli][mermaidjs/mermaid.cli]] looks like not maintained anymore, re-writed with purescript for my personal use.
 
 #+begin_src sh
-npm install
-./mmdc -i sample/sequence_diagram.mmd -o seq.png -t dark
+$ npm install
+$ ./mmdc --help
+mmdc - cli command for mermaid
+
+Usage: -- (-i|--input PATH) [-o|--output PATH] [-t|--theme THEME] [--debug]
+
+Available options:
+  -i,--input PATH          Input mermaid file. Required.
+  -o,--output PATH         Output file. It should be either svg, png. Optional.
+                           Default: input + ".svg"
+  -t,--theme THEME         Theme of the chart, could be default, forest, dark or
+                           neutral (default: default)
+  --debug                  Show the browser and don't close it atomatically even
+                           after successfully created.
+  -h,--help                Show this help text
+$ ./mmdc -i sample/sequence_diagram.mmd -o seq.png -t dark
 #+end_src
