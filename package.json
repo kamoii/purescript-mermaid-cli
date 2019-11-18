@@ -1,5 +1,5 @@
 {
-    "name": "mermaid-cli",
+    "name": "purescript-mermaid-cli",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -12,7 +12,6 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "mermaid": "^8.4.2",
         "puppeteer": "^2.0.0"
     }
 }
