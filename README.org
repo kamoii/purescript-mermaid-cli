@@ -1,6 +1,8 @@
 #+title: purescript-mermaid-cli
 
-Since [[https://github.com/mermaidjs/mermaid.cli][mermaidjs/mermaid.cli]] looks like it is not maintained anymore, re-written with purescript for my personal use.
+Since [[https://github.com/mermaidjs/mermaid.cli][mermaidjs/mermaid.cli]] looks like it is not maintained anymore,
+re-written with purescript for my personal use. Currenty uses
+puppeteer 2.0.0 and mermaid 8.4.2.
 
 #+begin_example
 $ npm install
