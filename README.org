@@ -1,6 +1,6 @@
 #+title: purescript-mermaid-cli
 
-Since [[https://github.com/mermaidjs/mermaid.cli][mermaidjs/mermaid.cli]] looks like not maintained anymore, re-writed with purescript for my personal use.
+Since [[https://github.com/mermaidjs/mermaid.cli][mermaidjs/mermaid.cli]] looks like it is not maintained anymore, re-written with purescript for my personal use.
 
 #+begin_example
 $ npm install
