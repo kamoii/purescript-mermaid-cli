@@ -39,15 +39,17 @@ type Options =
   { input :: FilePath
   , output :: Maybe FilePath
   , theme :: Theme
+  , cdnVer :: String
   , debug :: Boolean
   }
 
 optsParser :: Parser Options
 optsParser =
-  { input: _, output: _, theme: _, debug: _}
+  { input: _, output: _, theme: _, cdnVer: _, debug: _}
   <$> strOption ( long "input" <> short 'i' <> metavar "PATH" <> help "Input mermaid file. Required." )
   <*> do optional $ strOption ( long "output" <> short 'o' <> metavar "PATH" <> help "Output file. It should be either svg, png. Optional. Default: input + \".svg\"" )
   <*> option themeR ( long "theme" <> short 't' <> help "Theme of the chart, could be default, forest, dark or neutral" <> showDefault <> value DefaultTheme <> metavar "THEME" )
+  <*> strOption ( long "cdn-version" <> help "You can specify which version of mermaid.js to use. Will use official CDN." <> showDefault <> value defaultCdnVer <> metavar "VER")
   <*> switch ( long "debug" <> help "Show the browser and don't close it atomatically even after successfully created." <> showDefault )
   where
     themeR :: ReadM Theme
@@ -65,8 +67,8 @@ optsInfo =
     <> header "mmdc - cli command for mermaid"
   )
 
-cdn :: String
-cdn = "https://unpkg.com/mermaid@8.4.2/dist/mermaid.min.js"
+defaultCdnVer :: String
+defaultCdnVer = "8.4.2"
 
 data OutputExt
   = SVG
@@ -86,7 +88,7 @@ main = do
     let doClose  = not opts.debug
     definition <- FS.readTextFile UTF8 opts.input
     browser <- T.launch { headless }
-    svg <- mermaidRender browser opts.theme definition
+    svg <- mermaidRender browser opts.cdnVer opts.theme definition
     case outputExt of
       SVG -> FS.writeTextFile UTF8 output svg
       PNG -> convertSvgToPng browser output svg
@@ -95,8 +97,8 @@ main = do
 -- | MermaidAPI を利用してSVGを得る。
 -- | 一時的に画面には(hiddenな)DOMが追加されるが、最終的には何もない状態。
 -- | ビューポートのサイズはレンダリングに影響を与えない。
-mermaidRender :: T.Browser -> Theme -> String -> Aff String
-mermaidRender browser theme definition = do
+mermaidRender :: T.Browser -> String -> Theme -> String -> Aff String
+mermaidRender browser cdnVer theme definition = do
   page <- T.newPage browser
   T.setContent indexHtml page
   svg' <- T.unsafeEvaluateWithArgs renderFn [unsafeToForeign definition] page
@@ -104,6 +106,8 @@ mermaidRender browser theme definition = do
   where
     renderFn :: String
     renderFn = "(definition) => { return window.mermaid.render('mmdc', definition); }"
+    cdnUrl :: String
+    cdnUrl = "https://unpkg.com/mermaid@" <> cdnVer <> "/dist/mermaid.min.js"
 
     -- smolder は script や style のコンテンツだろうがエスケープをかける。
     -- 多分制御する方法はないので、古き汚ない placeholder + replace 方式で。
@@ -122,7 +126,7 @@ mermaidRender browser theme definition = do
         template =
           S.html do
             S.head do
-              S.script ! A.src cdn $ text ""
+              S.script ! A.src cdnUrl $ text ""
               S.script $ text initJsHolder
               S.style $ text styleHolder
             S.body do
