@@ -9,7 +9,8 @@ $ npm install
 $ ./mmdc --help
 mmdc - cli command for mermaid
 
-Usage: -- (-i|--input PATH) [-o|--output PATH] [-t|--theme THEME] [--debug]
+Usage: -- (-i|--input PATH) [-o|--output PATH] [-t|--theme THEME]
+          [--cdn-version VER] [--debug]
 
 Available options:
   -i,--input PATH          Input mermaid file. Required.
@@ -17,6 +18,8 @@ Available options:
                            Default: input + ".svg"
   -t,--theme THEME         Theme of the chart, could be default, forest, dark or
                            neutral (default: default)
+  --cdn-version VER        You can specify which version of mermaid.js to use.
+                           Will use official CDN. (default: "8.4.2")
   --debug                  Show the browser and don't close it atomatically even
                            after successfully created.
   -h,--help                Show this help text
