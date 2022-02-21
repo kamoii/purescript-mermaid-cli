@@ -116,13 +116,56 @@ let additions =
   }
 -------------------------------
 -}
-
-
 let upstream =
-      https://github.com/purescript/package-sets/releases/download/psc-0.13.4-20191110/packages.dhall sha256:563a7f694e18e6399f7f6d01f5b7e3c3345781655d99945768f48e458feb93a4
+      https://github.com/purescript/package-sets/releases/download/psc-0.14.5-20220216/packages.dhall
+        sha256:890466a5e3ed4793ee702d8df8ef85a025fbacbdfeb63c73597aef2795c06845
 
-let overrides = { toppokki = /home/sino/mygithub/purescript-toppokki/spago.dhall as Location }
+let additions =
+      { smolder =
+        { repo = "https://github.com/kamoii/purescript-smolder.git"
+        , version = "v12.4.0"
+        , dependencies =
+          [ "bifunctors"
+          , "catenable-lists"
+          , "console"
+          , "effect"
+          , "free"
+          , "ordered-collections"
+          , "prelude"
+          , "psci-support"
+          , "strings"
+          , "test-unit"
+          , "transformers"
+          , "tuples"
+          , "js-uri"
+          ]
+        }
+      }
 
-let additions = {=}
+let overridees =
+      { toppokki =
+        { repo = "https://github.com/kamoii/purescript-toppokki.git"
+        , version = "master"
+        , dependencies =
+          [ "aff-promise"
+          , "effect"
+          , "functions"
+          , "node-fs-aff"
+          , "prelude"
+          , "psci-support"
+          , "aff"
+          , "either"
+          , "exceptions"
+          , "foreign"
+          , "maybe"
+          , "newtype"
+          , "node-buffer"
+          , "refs"
+          , "strings"
+          , "transformers"
+          , "unsafe-coerce"
+          ]
+        }
+      }
 
-in  upstream // overrides // additions
+in  upstream // overridees // additions
