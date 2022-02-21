@@ -1,19 +1,20 @@
-#+title: purescript-mermaid-cli
+# purescript-mermaid-cli
 
-Since [[https://github.com/mermaidjs/mermaid.cli][mermaidjs/mermaid.cli]] looks like it is not maintained anymore,
+
+Since [mermaidjs/mermaid.cli](https://github.com/mermaidjs/mermaid.cli) looks like it is not maintained anymore,
 re-written with purescript for my personal use. Currenty uses
 puppeteer 13.3.2 and mermaid 8.4.2.
 
 ## Build
 
-#+begin_example
+```
 $ spago build
 $ npm install
-#+end_example
+```
 
 ## Usage
 
-#+begin_example
+```
 $ ./mmdc --help
 mmdc - cli command for mermaid
 
@@ -32,4 +33,4 @@ Available options:
                            after successfully created.
   -h,--help                Show this help text
 $ ./mmdc -i sample/sequence_diagram.mmd -o seq.png -t dark
-#+end_example
+```
