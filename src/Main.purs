@@ -18,7 +18,7 @@ import Node.Path (FilePath)
 import Node.Path as Path
 import Text.Smolder.HTML as S
 import Text.Smolder.HTML.Attributes as A
-import Text.Smolder.Markup (text, (!))
+import Text.Smolder.Markup (text, (!), safe)
 import Text.Smolder.Renderer.String (render)
 import Toppokki as T
 
@@ -126,7 +126,7 @@ mermaidRender browser cdnVer theme definition = do
         template =
           S.html do
             S.head do
-              S.script ! A.src cdnUrl $ text ""
+              S.script ! safe (A.src cdnUrl) $ text ""
               S.script $ text initJsHolder
               S.style $ text styleHolder
             S.body do
