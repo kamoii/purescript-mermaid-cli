@@ -4,8 +4,16 @@ Since [[https://github.com/mermaidjs/mermaid.cli][mermaidjs/mermaid.cli]] looks 
 re-written with purescript for my personal use. Currenty uses
 puppeteer 13.3.2 and mermaid 8.4.2.
 
+## Build
+
 #+begin_example
+$ spago build
 $ npm install
+#+end_example
+
+## Usage
+
+#+begin_example
 $ ./mmdc --help
 mmdc - cli command for mermaid
 
